@@ -32,6 +32,14 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				coral: '#FF6B6B',
+				turquoise: '#4ECDC4',
+				sky: '#45B7D1',
+				gradient: {
+					from: '#FF6B6B',
+					via: '#4ECDC4',
+					to: '#45B7D1'
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
