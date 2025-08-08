@@ -48,6 +48,19 @@ const Index = () => {
     { title: 'Сериалы', count: 31, gradient: 'from-coral via-turquoise to-sky' }
   ];
 
+  const topMovies = [
+    { id: 1, title: 'Властелин драконов', rating: 9.8, year: 2024, genre: 'Фэнтези', position: 1, image: '/img/9eedcbf6-1d8d-4375-bf14-0b190046206d.jpg' },
+    { id: 2, title: 'Темный город', rating: 9.5, year: 2024, genre: 'Триллер', position: 2, image: '/img/8f3d0aa8-a473-453c-aea3-66a20a1780c0.jpg' },
+    { id: 3, title: 'Космическая Одиссея', rating: 9.4, year: 2024, genre: 'Фантастика', position: 3, image: '/img/42fc1772-34ef-4aff-a641-6bb51b10e185.jpg' },
+    { id: 4, title: 'Ночные тени', rating: 9.2, year: 2024, genre: 'Ужасы', position: 4, image: '/img/481e5366-9a12-4ed6-9504-cc8c4e0e61e4.jpg' },
+    { id: 5, title: 'Скорость света', rating: 9.1, year: 2024, genre: 'Боевик', position: 5, image: '/img/97d90ce0-19a0-45f9-a14b-fa2cf65b7c21.jpg' },
+    { id: 6, title: 'Золотые сердца', rating: 9.0, year: 2023, genre: 'Драма', position: 6, image: '/img/e0331449-da3c-4ffe-9e85-6d16f7663158.jpg' },
+    { id: 7, title: 'Бесконечность', rating: 8.9, year: 2024, genre: 'Фантастика', position: 7, image: '/img/42fc1772-34ef-4aff-a641-6bb51b10e185.jpg' },
+    { id: 8, title: 'Киберпанк 2099', rating: 8.8, year: 2024, genre: 'Киберпанк', position: 8, image: '/img/42fc1772-34ef-4aff-a641-6bb51b10e185.jpg' },
+    { id: 9, title: 'Последний герой', rating: 8.7, year: 2024, genre: 'Боевик', position: 9, image: '/img/97d90ce0-19a0-45f9-a14b-fa2cf65b7c21.jpg' },
+    { id: 10, title: 'Тайны прошлого', rating: 8.6, year: 2023, genre: 'Детектив', position: 10, image: '/img/8f3d0aa8-a473-453c-aea3-66a20a1780c0.jpg' }
+  ];
+
   const navItems = ['Главная', 'Фильмы', 'Сериалы', 'Подборки', 'Рейтинги'];
 
   return (
@@ -116,6 +129,92 @@ const Index = () => {
                   Смотреть всё <Icon name="ArrowRight" size={16} className="ml-2" />
                 </Button>
               </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Top 10 Movies Section */}
+      <section className="container mx-auto px-4 pb-16">
+        <div className="text-center mb-12">
+          <h3 className="text-4xl font-bold text-white font-montserrat mb-4">
+            🏆 <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Топ 10</span> фильмов
+          </h3>
+          <p className="text-white/70 text-lg">Самые популярные и высокооценённые фильмы по версии зрителей</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+          {topMovies.slice(0, 5).map((movie) => (
+            <Card key={movie.id} className="bg-white/5 border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 cursor-pointer backdrop-blur-sm overflow-hidden group relative">
+              <div className="absolute top-2 left-2 z-10">
+                <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-lg px-3 py-1 rounded-full shadow-lg">
+                  #{movie.position}
+                </div>
+              </div>
+              <div className="relative overflow-hidden">
+                <img 
+                  src={movie.image} 
+                  alt={movie.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <Button size="sm" className="bg-coral hover:bg-coral/80 text-white">
+                    <Icon name="Play" size={14} className="mr-1" />
+                    Смотреть
+                  </Button>
+                </div>
+              </div>
+              
+              <CardHeader className="p-4">
+                <CardTitle className="text-white font-montserrat text-sm mb-2 line-clamp-2">{movie.title}</CardTitle>
+                <div className="flex items-center justify-between">
+                  <Badge variant="outline" className="border-turquoise text-turquoise text-xs">
+                    {movie.genre}
+                  </Badge>
+                  <div className="flex items-center space-x-1">
+                    <Icon name="Star" className="text-yellow-400 fill-current" size={12} />
+                    <span className="text-white text-xs font-medium">{movie.rating}</span>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+          {topMovies.slice(5, 10).map((movie) => (
+            <Card key={movie.id} className="bg-white/5 border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 cursor-pointer backdrop-blur-sm overflow-hidden group relative">
+              <div className="absolute top-2 left-2 z-10">
+                <div className="bg-gradient-to-r from-gray-400 to-gray-600 text-white font-bold text-lg px-3 py-1 rounded-full shadow-lg">
+                  #{movie.position}
+                </div>
+              </div>
+              <div className="relative overflow-hidden">
+                <img 
+                  src={movie.image} 
+                  alt={movie.title}
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                  <Button size="sm" className="bg-coral hover:bg-coral/80 text-white">
+                    <Icon name="Play" size={14} className="mr-1" />
+                    Смотреть
+                  </Button>
+                </div>
+              </div>
+              
+              <CardHeader className="p-4">
+                <CardTitle className="text-white font-montserrat text-sm mb-2 line-clamp-2">{movie.title}</CardTitle>
+                <div className="flex items-center justify-between">
+                  <Badge variant="outline" className="border-turquoise text-turquoise text-xs">
+                    {movie.genre}
+                  </Badge>
+                  <div className="flex items-center space-x-1">
+                    <Icon name="Star" className="text-yellow-400 fill-current" size={12} />
+                    <span className="text-white text-xs font-medium">{movie.rating}</span>
+                  </div>
+                </div>
+              </CardHeader>
             </Card>
           ))}
         </div>
