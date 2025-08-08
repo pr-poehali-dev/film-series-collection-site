@@ -61,6 +61,20 @@ const Index = () => {
     { id: 10, title: 'Тайны прошлого', rating: 8.6, year: 2023, genre: 'Детектив', position: 10, image: '/img/8f3d0aa8-a473-453c-aea3-66a20a1780c0.jpg' }
   ];
 
+  const featuredCollection = {
+    title: "Фильмы для хорошего настроения",
+    description: "Подборка лучших комедий и feel-good фильмов, которые поднимут настроение в любой день. От классических комедий до современных хитов.",
+    author: "Редакция CineHub",
+    publishDate: "8 августа 2024",
+    readTime: "5 мин чтения",
+    movies: [
+      { id: 1, title: 'Веселые приключения', rating: 8.4, year: 2024, genre: 'Комедия', image: '/img/81f6118f-bf56-4798-a60e-d7f69b441075.jpg', description: 'Легкая комедия о дружбе и приключениях' },
+      { id: 2, title: 'Золотые сердца', rating: 9.0, year: 2023, genre: 'Драма', image: '/img/e0331449-da3c-4ffe-9e85-6d16f7663158.jpg', description: 'Трогательная история о любви' },
+      { id: 3, title: 'Ковбои будущего', rating: 8.1, year: 2024, genre: 'Вестерн', image: '/img/c2efa73c-866e-40ee-9aeb-a36987191f77.jpg', description: 'Современный взгляд на классический жанр' },
+      { id: 4, title: 'Космическая Одиссея', rating: 9.4, year: 2024, genre: 'Фантастика', image: '/img/42fc1772-34ef-4aff-a641-6bb51b10e185.jpg', description: 'Вдохновляющее путешествие к звездам' }
+    ]
+  };
+
   const navItems = ['Главная', 'Фильмы', 'Сериалы', 'Подборки', 'Рейтинги'];
 
   return (
@@ -132,6 +146,101 @@ const Index = () => {
             </Card>
           ))}
         </div>
+
+        {/* Featured Collection Article */}
+        <Card className="bg-gradient-to-r from-white/10 via-white/5 to-white/10 border-white/20 backdrop-blur-sm mb-16">
+          <CardHeader className="pb-6">
+            <div className="flex items-start justify-between mb-4">
+              <Badge className="bg-gradient-to-r from-coral to-turquoise text-white border-0">
+                📝 Рекомендации редакции
+              </Badge>
+              <div className="flex items-center space-x-4 text-white/60 text-sm">
+                <span className="flex items-center space-x-1">
+                  <Icon name="User" size={14} />
+                  <span>{featuredCollection.author}</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <Icon name="Calendar" size={14} />
+                  <span>{featuredCollection.publishDate}</span>
+                </span>
+                <span className="flex items-center space-x-1">
+                  <Icon name="Clock" size={14} />
+                  <span>{featuredCollection.readTime}</span>
+                </span>
+              </div>
+            </div>
+            <CardTitle className="text-white font-montserrat text-2xl mb-3">
+              {featuredCollection.title}
+            </CardTitle>
+            <CardDescription className="text-white/80 text-base leading-relaxed">
+              {featuredCollection.description}
+            </CardDescription>
+          </CardHeader>
+          
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredCollection.movies.map((movie, index) => (
+                <Card key={movie.id} className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 cursor-pointer backdrop-blur-sm overflow-hidden group">
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src={movie.image} 
+                      alt={movie.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-2 right-2">
+                      <div className="flex items-center space-x-1 bg-black/70 px-2 py-1 rounded">
+                        <Icon name="Star" className="text-yellow-400 fill-current" size={12} />
+                        <span className="text-white text-xs font-medium">{movie.rating}</span>
+                      </div>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                      <Button size="sm" className="bg-coral hover:bg-coral/80 text-white">
+                        <Icon name="Play" size={14} className="mr-1" />
+                        Смотреть
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <CardHeader className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="outline" className="border-turquoise text-turquoise text-xs">
+                        {movie.genre}
+                      </Badge>
+                      <span className="text-white/60 text-xs">{movie.year}</span>
+                    </div>
+                    <CardTitle className="text-white font-montserrat text-sm mb-2 line-clamp-2">
+                      {movie.title}
+                    </CardTitle>
+                    <CardDescription className="text-white/60 text-xs line-clamp-2">
+                      {movie.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
+              <div className="flex items-center space-x-4">
+                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white">
+                  <Icon name="Heart" size={16} className="mr-2" />
+                  Нравится (248)
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white">
+                  <Icon name="MessageCircle" size={16} className="mr-2" />
+                  Комментарии (32)
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white">
+                  <Icon name="Share2" size={16} className="mr-2" />
+                  Поделиться
+                </Button>
+              </div>
+              <Button className="bg-gradient-to-r from-coral to-turquoise hover:from-coral/80 hover:to-turquoise/80 text-white">
+                Читать полную статью
+                <Icon name="ArrowRight" size={16} className="ml-2" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </section>
 
       {/* Top 10 Movies Section */}
